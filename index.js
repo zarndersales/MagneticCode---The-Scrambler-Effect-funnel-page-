@@ -1,3 +1,7 @@
+import './templates.js';
+
+
+
 const ctaButtons = document.querySelectorAll('[data-cta-button]');
 const salePopup = document.querySelector('[data-sale-popup]');
 
@@ -18,14 +22,11 @@ const getRandomElement = (array) => array[Math.floor(Math.random() * array.lengt
 // Show CTA buttons after a delay
 setTimeout(() => {
     ctaButtons.forEach(button => button.removeAttribute('hidden'));
-}, 10000); // 10 seconds
+}, 100); // 90 seconds
 
 // Function to display the sale popup
 function showSalePopup() {
-    const randomLocation = getRandomElement(LOCATIONS);
-    const randomName = getRandomElement(MALE_NAMES);
-    const randomNumber = Math.floor(Math.random() * 1000);
-    const randomUsername = `${randomName}_${randomNumber}`;
+    var { randomUsername, randomLocation } = nameGenAndLocation();
 
     salePopup.textContent = `🔔 ${randomUsername} just purchased The Scrambler Effect ${randomLocation}!`;
     salePopup.classList.add('popup-sale--show');
@@ -39,4 +40,26 @@ function showSalePopup() {
 }
 
 // Start showing sale popups after an initial delay
-setTimeout(showSalePopup, 1000); // 10 seconds
+setTimeout(showSalePopup, 10000); // 10 seconds
+
+function nameGenAndLocation() {
+    const randomLocation = getRandomElement(LOCATIONS);
+    const randomName = getRandomElement(MALE_NAMES);
+    const randomNumberOrLetters = Math.random() < 0.5
+        ? Math.random().toString(36).substring(2, 6) // Random letters
+        : Math.floor(Math.random() * 1000); // Random numbers
+    const includeUnderscore = Math.random() < 0.5; // 50% chance to include an underscore
+    const underscorePosition = Math.random() < 0.5 ? 0 : 1; // Randomly decide underscore position
+    let randomUsername;
+
+    if (includeUnderscore) {
+        randomUsername = underscorePosition === 0
+            ? `_${randomName}${randomNumberOrLetters}`
+            : `${randomName}_${randomNumberOrLetters}`;
+    } else {
+        randomUsername = `${randomName}${randomNumberOrLetters}`;
+    }
+    return { randomUsername, randomLocation };
+}
+
+

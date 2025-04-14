@@ -4,14 +4,184 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <title>MagneticCode - The Scrambler Effect</title>
-  <script src="index.js" defer></script>
+  <script type="module" src="index.js"></script>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0d0d0d;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
 
+.page__banner {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.page__title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #facc15;
+}
+
+.page__description {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 30px;
+    color: #d1d5db;
+}
+
+.video-section__container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 30px;
+}
+
+.video-section__iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+}
+
+.cta__button {
+    background-color: #facc15;
+    color: #0d0d0d;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 50px;
+}
+
+.cta__button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #facc15aa;
+}
+
+.proof-section__text {
+  margin-top: 75px;
+  font-size: 0.95rem;
+  color: #9ca3afab;
+}
+
+.popup-sale {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #1f2937;
+    color: #facc15;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00000055;
+    font-size: 0.9rem;
+    display: none;
+    z-index: 999;
+}
+
+.popup-sale--show {
+    display: block;
+    animation: floatUpFade 5s ease forwards;
+}
+
+@keyframes floatUpFade {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}
+
+.video-section__player {
+    max-width: 800px;
+    min-width: 300px;
+}
+
+.magneticcode-banner {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.highlight-limited {
+    color: yellow;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+.divider-with-diamond {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+    gap: 20px;
+}
+
+.divider-line {
+    flex: 1;
+    border: none;
+    border-top: 2px solid #facc15;
+    width: 200px;
+}
+
+.diamond-shape {
+    width: 8px;
+    height: 8px;
+    background-color: #0d0d0d;
+    border: 2px solid #facc15;
+    transform: rotate(45deg);
+    background-color: #facc15;
+}
+</style>
 </head>
 <body>
-  <img src="https://via.placeholder.com/1200x300.png?text=MagneticCode+Banner" alt="MagneticCode Banner" class="page__banner">
+  <p class="magneticcode-banner">Magneticcode <span class="highlight-limited">limited</span> Promotion</p>
+
+
+
+</body>
+</html>
+
+
+<template id="template-ad1">
   <div class="page__title">
     <h1>Why Do Some Men Trigger Obsession — While Others Get Ghosted Instantly?</h1>
+  </div>
+  <div class="divider-with-diamond">
+    <hr class="divider-line" />
+    <div class="diamond-shape"></div>
+    <hr class="divider-line" />
   </div>
   <div class="page__description">
     <p>
@@ -20,18 +190,25 @@
       Watch this before it gets taken down — it's wild.
     </p>
   </div>
-  <script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/pv6oawox6v.js" async type="module"></script><style>wistia-player[media-id='pv6oawox6v']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/pv6oawox6v/swatch'); display: block; filter: blur(5px); padding-top:53.75%; }</style> <wistia-player class="video-section__player"  media-id="pv6oawox6v" aspect="1.8604651162790697"></wistia-player>
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/pv6oawox6v.js" async type="module"></script>
+  <style>
+    wistia-player[media-id='pv6oawox6v']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/pv6oawox6v/swatch');
+      display: block;
+      filter: blur(5px);
+      padding-top:53.75%;
+    }
+  </style>
+  <wistia-player class="video-section__player" media-id="pv6oawox6v" aspect="1.8604651162790697"></wistia-player>
   <a hidden href="https://a230b9fcp11fl-sfri-0p3qp4d.hop.clickbank.net/?&traffic_source=tiktok&traffic_type=bridge-page&campaign=videohook&ad=ad1" class="cta__button" target="_blank" data-cta-button>
-    🔓 Buy Now
+    🔓 Unlock Her Obsession — Watch It Happen
   </a>
   <div class="proof-section__text">
     ⚠️ Over 113,000 men have used this strategy. Limited-time access.
   </div>
-
   <div class="popup-sale" data-sale-popup>
     🔔 Someone just purchased The Scrambler Effect!
   </div>
   
-
-</body>
-</html>
+</template>
