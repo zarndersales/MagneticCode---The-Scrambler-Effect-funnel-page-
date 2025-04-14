@@ -19,10 +19,7 @@ const MALE_NAMES = [
 // Utility function to get a random element from an array
 const getRandomElement = (array) => array[Math.floor(Math.random() * array.length)];
 
-// Show CTA buttons after a delay
-setTimeout(() => {
-    ctaButtons.forEach(button => button.removeAttribute('hidden'));
-}, 100); // 90 seconds
+
 
 // Function to display the sale popup
 function showSalePopup() {
