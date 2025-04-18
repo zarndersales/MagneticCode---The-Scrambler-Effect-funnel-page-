@@ -24,7 +24,7 @@ export async function handler(event) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-MailerLite-ApiKey": "912773400e106c5a163fd938b9dab0c7",
+          "X-MailerLite-ApiKey": MAILERLITE_API_KEY,
         },
         body: JSON.stringify({ email }),
       });
