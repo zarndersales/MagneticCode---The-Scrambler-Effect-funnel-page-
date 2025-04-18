@@ -20,18 +20,20 @@ export async function handler(event) {
     const LIST_ID = process.env.MAILJET_LIST_ID;
   
     try {
-      const res = await fetch(`https://api.mailjet.com/v3/REST/contactslist/${LIST_ID}/managemanycontacts`, {
+      const res = await fetch(`https://api.mailjet.com/v3/REST/contactslist/${LIST_ID}/managecontact`, {
         method: "POST",
         headers: {
-          "Authorization": "Basic " + Buffer.from(`${MAILJET_API_KEY}:${MAILJET_SECRET_KEY}`).toString("base64"),
+          Authorization: "Basic " + Buffer.from(`${MAILJET_API_KEY}:${MAILJET_SECRET_KEY}`).toString("base64"),
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          Contacts: [{ Email: email }],
+          Email: email,
+          Action: "addforce" // 👈 forces re-add even if previously unsubscribed
         }),
       });
   
       const data = await res.json();
+      console.log("Mailjet response:", data); // 🪵 Log for debugging
   
       if (!res.ok) {
         return {
@@ -42,7 +44,7 @@ export async function handler(event) {
   
       return {
         statusCode: 200,
-        body: JSON.stringify({ message: "Successfully subscribed!" }),
+        body: JSON.stringify({ message: "Successfully subscribed to the_scrambler!" }),
       };
     } catch (err) {
       return {
