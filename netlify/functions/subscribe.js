@@ -26,7 +26,7 @@ export async function handler(event) {
         },
         body: JSON.stringify({
           email: email,
-          resubscribe: true // Optional: adds user again if already unsubscribed
+          resubscribe: true
         }),
       });
   
