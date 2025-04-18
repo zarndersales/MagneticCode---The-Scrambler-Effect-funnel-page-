@@ -1,5 +1,3 @@
-// netlify/functions/subscribe.js
-
 export async function handler(event) {
     if (event.httpMethod !== "POST") {
       return {
@@ -20,13 +18,16 @@ export async function handler(event) {
     const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
   
     try {
-      const res = await fetch("https://api.mailerlite.com/api/v2/subscribers", {
+      const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-MailerLite-ApiKey": MAILERLITE_API_KEY,
+          "Authorization": `Bearer ${MAILERLITE_API_KEY}`,
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email: email,
+          resubscribe: true // Optional: adds user again if already unsubscribed
+        }),
       });
   
       const data = await res.json();
@@ -34,7 +35,7 @@ export async function handler(event) {
       if (!res.ok) {
         return {
           statusCode: res.status,
-          body: JSON.stringify({ message: data.error.message || "MailerLite error" }),
+          body: JSON.stringify({ message: data.message || "MailerLite error" }),
         };
       }
   
