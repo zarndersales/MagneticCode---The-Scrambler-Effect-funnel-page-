@@ -15,18 +15,19 @@ export async function handler(event) {
       };
     }
   
-    const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
+    const MAILJET_API_KEY = process.env.MAILJET_API_KEY;
+    const MAILJET_SECRET_KEY = process.env.MAILJET_SECRET_KEY;
+    const LIST_ID = process.env.MAILJET_LIST_ID;
   
     try {
-      const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
+      const res = await fetch(`https://api.mailjet.com/v3/REST/contactslist/${LIST_ID}/managemanycontacts`, {
         method: "POST",
         headers: {
+          "Authorization": "Basic " + Buffer.from(`${MAILJET_API_KEY}:${MAILJET_SECRET_KEY}`).toString("base64"),
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${MAILERLITE_API_KEY}`,
         },
         body: JSON.stringify({
-          email: email,
-          resubscribe: true
+          Contacts: [{ Email: email }],
         }),
       });
   
@@ -35,7 +36,7 @@ export async function handler(event) {
       if (!res.ok) {
         return {
           statusCode: res.status,
-          body: JSON.stringify({ message: data.message || "MailerLite error" }),
+          body: JSON.stringify({ message: data.ErrorMessage || "Mailjet error" }),
         };
       }
   
@@ -43,10 +44,10 @@ export async function handler(event) {
         statusCode: 200,
         body: JSON.stringify({ message: "Successfully subscribed!" }),
       };
-    } catch (error) {
+    } catch (err) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ message: "Server error", error: error.message }),
+        body: JSON.stringify({ message: "Server error", error: err.message }),
       };
     }
   }
