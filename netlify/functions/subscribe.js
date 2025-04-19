@@ -1,6 +1,7 @@
 exports.handler = async (event) => {
-  const { email } = JSON.parse(event.body);
 
+  const { email } = JSON.parse(event.body);
+  
   const API_KEY = process.env.BREVO_API_KEY;
 
   try {
